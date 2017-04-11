@@ -71,23 +71,12 @@ gulp.task("sass",function(){
 });
 
 
-gulp.task("jade",function(){
-	gulp.src("src/views/*.jade")
-		.pipe(plumber())
-		.pipe(jade({
-			pretty:true
-		}))
-		.pipe(gulp.dest("./public"));
-	browser.reload();
-});
-
 
 gulp.task("default",["server","babel"],function(){
 	gulp.src('public/style.css')
         .pipe(gcmq())
         .pipe(gulp.dest('public.css'));
 	gulp.watch("src/styles/*.scss",["sass"]);
-	gulp.watch("src/views/*.jade",["jade"]);
 	gulp.watch("src/js/*.es6",["babel"]);
 	gulp.watch('src/js/*.js', ['build']);
 	gulp.watch("src/js/components/*.js", ["build"]);
